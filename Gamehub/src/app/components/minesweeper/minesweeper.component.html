@@ -1,0 +1,25 @@
+<p>Flaggen: {{flags}}</p>
+<div
+  [class]="`bg-blue-700 m-auto my-[2vh] px-[1vw] py-[1vh] grid grid-cols-10 grid-rows-10} gap-1`"
+>
+  @for (row of field; track $index){ @for (cell of row; track $index){
+  <div class="h-[5vh] w-[5vh]">
+    <div
+      class="bg-blue-500 h-[100%] w-[100%]"
+      (click)="open(cell.coordinates)"
+      (contextmenu)="flag(cell.coordinates, $event)"
+    >
+      @if (cell.open) {
+      <p class="text-white text-center" (click)="open(cell.coordinates)">
+        @if (cell.mine) { 💣 } @else {
+        {{ cell.adjacentMines }}
+        }
+      </p>
+      } @else if(cell.flagged){
+      <p class="text-white text-center">🚩</p>
+      }
+    </div>
+  </div>
+  } }
+</div>
+<button (click)="initField()">Restart</button>
