@@ -1,0 +1,16 @@
+<div class="w-[100vw] h-[7vh] bg-teal-600 border-b-2 border-teal-800 grid grid-cols-10">
+  @for(game of games; track game){
+  <button
+    class="bg-cyan-400 mx-[1vw] my-[1vh] border border-none rounded-xl cursor-pointer"
+    [routerLink]="[`/${game}`]"
+  >
+    {{ game }}
+  </button>
+  }
+  <button
+    class="col-start-10 bg-cyan-400 mx-[1vw] my-[1vh] border border-none rounded-xl cursor-pointer"
+    [routerLink]="['/']"
+  >
+    Home
+  </button>
+</div>
