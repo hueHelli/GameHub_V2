@@ -1,0 +1,7 @@
+@for (x of labyrinthFields; track $index) {
+  <div class="flex">
+    @for (y of x; track $index) {
+      <app-labyrinth-field [isWall]="y.isWall" [isPlayer]="y.isPlayer"></app-labyrinth-field>
+    }
+  </div>
+}
