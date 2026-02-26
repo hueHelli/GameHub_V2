@@ -1,0 +1,14 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  @if (field?.walls?.n == myWall.wall) {
+    <line x1="0" y1="0" x2="100" y2="0" style="stroke: black; stroke-width: 2" />
+  }
+  @if (field?.walls?.e == myWall.wall) {
+    <line x1="100" y1="0" x2="100" y2="100" style="stroke: black; stroke-width: 2" />
+  }
+  @if (field?.walls?.s == myWall.wall) {
+    <line x1="100" y1="100" x2="0" y2="100" style="stroke: black; stroke-width: 2" />
+  }
+  @if (field?.walls?.w == myWall.wall) {
+    <line x1="0" y1="100" x2="0" y2="0" style="stroke: black; stroke-width: 2" />
+  }
+</svg>

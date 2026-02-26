@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LabyrinthField } from './labyrinth-field/labyrinth-field';
+import { LabyrinthFieldComponent } from './labyrinth-field-component/labyrinth-field-component';
+import { labyrinthField, wall } from './labyrinth-field-component/labyrinthField';
 
 @Component({
   selector: 'app-labyrinth',
-  imports: [LabyrinthField],
+  imports: [LabyrinthFieldComponent],
   templateUrl: './labyrinth.html',
   styleUrl: './labyrinth.scss',
 })
@@ -11,11 +12,7 @@ export class Labyrinth implements OnInit {
   width: number = 10;
   height: number = 10;
 
-  labyrinthFields = Array.from(Array(this.height * 2 - 1), () =>
-    Array.from(Array(this.width * 2 - 1), () => {
-      return { isWall: true, isPlayer: false };
-    }),
-  );
+  labyrinthFields: Array<labyrinthField> = [];
 
   generateLabyrinth(): void {
     let field: { x: number; y: number } = { x: 0, y: 0 };
@@ -26,8 +23,8 @@ export class Labyrinth implements OnInit {
 
       let wallToOpen = this.getWallFieldToOpen(oldField, field);
       /* console.log(field); */
-      this.labyrinthFields[field.x][field.y].isWall = false;
-      this.labyrinthFields[wallToOpen.x][wallToOpen.y].isWall = false;
+      /* this.labyrinthFields[field.x][field.y].isWall = false;
+      this.labyrinthFields[wallToOpen.x][wallToOpen.y].isWall = false; */
     }
   }
 
@@ -56,7 +53,7 @@ export class Labyrinth implements OnInit {
       }
       console.log(newField);
     } while (this.rerollField(newField) /* || this.areFieldTouched(newField) */);
-    this.areFieldTouched(newField);
+    /* this.areFieldTouched(newField); */
     return newField;
   }
 
@@ -65,12 +62,12 @@ export class Labyrinth implements OnInit {
       `rerollField: ${cords.x >= this.width || cords.x < 0 || cords.y >= this.height || cords.y < 0}`,
     );
     return cords.x >= this.width || cords.x < 0 || cords.y >= this.height || cords.y < 0;
-  }
+  }/* 
 
   areFieldTouched(cords: { x: number; y: number }): boolean {
     console.log(`areFieldTouched: ${!this.labyrinthFields[cords.x][cords.y].isWall}`);
     return !this.labyrinthFields[cords.x][cords.y].isWall;
-  }
+  } */
 
   getWallFieldToOpen(
     old: { x: number; y: number },
@@ -94,6 +91,16 @@ export class Labyrinth implements OnInit {
   }
 
   ngOnInit(): void {
+    for (let x = 0; x < this.width; x++) {
+      for (let y = 0; y < this.height; y++) {
+        this.labyrinthFields.push(
+          new labyrinthField(x, y, { n: wall.wall, e: wall.wall, s: wall.wall, w: wall.wall }),
+        );
+      }
+    }
+
+    console.log(this.labyrinthFields);
+
     /* this.labyrinthFields[5][5].isWall = false;
     this.labyrinthFields[6][6].isWall = false;
     this.labyrinthFields[6][6].isPlayer = true; */

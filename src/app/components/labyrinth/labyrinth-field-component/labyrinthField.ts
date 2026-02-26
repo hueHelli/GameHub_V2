@@ -1,3 +1,5 @@
+import * as uuid from 'uuid';
+
 export enum wall {
   none,
   wall,
@@ -12,11 +14,13 @@ export enum cardinalDirection {
 }
 
 export class labyrinthField {
+  id: string;
   x: number;
   y: number;
   walls: { n: wall; e: wall; s: wall; w: wall };
 
   constructor(x: number, y: number, walls: { n: wall; e: wall; s: wall; w: wall }) {
+    this.id = uuid.v7();
     this.x = x;
     this.y = y;
     this.walls = walls;
