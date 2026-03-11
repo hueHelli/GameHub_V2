@@ -1,8 +1,15 @@
-@for (l of labyrinthFields; track $index) {
-  <app-labyrinth-field-component [field]="l"></app-labyrinth-field-component>
-  <!-- <div class="flex">
-    @for (y of x; track $index) {
-      <app-labyrinth-field [isWall]="y.isWall" [isPlayer]="y.isPlayer"></app-labyrinth-field>
-    }
-  </div> -->
-}
+<div class="bg-black">
+  @if (generated) {
+    <div class="flex flex-row">
+      @for (dx of [].constructor(width); track $index; let x = $index) {
+        <div class="flex flex-col bg-white">
+          @for (dy of [].constructor(height); track $index; let y = $index) {
+            <app-labyrinth-field-component
+              [field]="getFieldAt(x, y)"
+            ></app-labyrinth-field-component>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

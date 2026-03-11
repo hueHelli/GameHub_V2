@@ -26,19 +26,19 @@ export class labyrinthField {
     this.walls = walls;
   }
 
-  setWall(direction: cardinalDirection): void {
+  openWall(direction: cardinalDirection): void {
     switch (direction) {
       case cardinalDirection.n:
-        this.walls.n = wall.wall;
+        this.walls.n = wall.open;
         break;
       case cardinalDirection.e:
-        this.walls.e = wall.wall;
+        this.walls.e = wall.open;
         break;
       case cardinalDirection.s:
-        this.walls.s = wall.wall;
+        this.walls.s = wall.open;
         break;
       case cardinalDirection.w:
-        this.walls.w = wall.wall;
+        this.walls.w = wall.open;
         break;
     }
   }
